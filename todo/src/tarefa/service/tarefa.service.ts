@@ -38,6 +38,14 @@ export class TarefaService {
         })
     }
 
+    async findByResp(responsavel: string): Promise<Tarefa[]> {
+        return this.tarefaRepository.find({
+            where:{
+                responsavel: `${responsavel}`
+            }
+        })
+    }
+
     async create(tarefa: Tarefa): Promise<Tarefa>{
         return this.tarefaRepository.save(tarefa)
     }

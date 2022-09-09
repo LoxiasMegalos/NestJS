@@ -24,6 +24,12 @@ export class TarefaController {
         return this.service.findByNome(nome)
     }
 
+    @Get('/resp/:nome') //tarefa/resp/nomeBuscado
+    @HttpCode(HttpStatus.OK)
+    findByResponsavel(@Param('nome') nome: string): Promise<Tarefa[]>{
+        return this.service.findByResp(nome)
+    }
+
     @Post()
     @HttpCode(HttpStatus.CREATED)
     create(@Body() tarefa: Tarefa): Promise<Tarefa> {
