@@ -63,6 +63,17 @@ Passo a passo - criação e edição de APIs utilizando NestJs
 31 - Funções que requerem um parâmetro de busca utilizam anotações @Param('nomeParametro') nomeParametro: string, ou, @Param('nomeParametro', ParseIntPipe) nomeParametro: number<br>
 32 - Todas funções return this.service.funcaoDoService(parametro se tiver)<br>
 
+*Relacionamentos de tabelas*
+
+33 - Criar uma nova pasta dentro de src/ com o nome da tabela que irá se relacionar, src/projeto se relaciona com src/projeto-rel <br>
+34 - Criar pastas entities, modules, controllers, services para o projeto-rel <br>
+35 - Criar projeto-rel.entity.ts com @Entity('nome_tabela_relacionada') sendo uma export class com nome ProjetoRelacao <br>
+36 - Definir qual será a relação @OneToMany e qual será a @ManyToOne <br>
+37 - Em @OneToMany - uma unica entrada pode se relacionar a muitas outras, @OneToMany(() => ClasseRelacionada, (objetoDaClasseRelacionada) => objetoDaClasseRelacionada.campoRelacionado) objetoDaClasseRelacionadaPlural: ClasseRelacionada[] <br>
+38 - Em @ManyToOne(() => ClasseProjetoRelacionada, (objetoDaClasseRelacionada) => objetoDaClasseRelacionada.objetoDaClassePrinciapalPlural, {onDelete: "CASCADE"}) objetoDaClasseRelacionada: ClasseRelacionada <br>
+39 - Utilizar relations em todos os services de classes relacionadas, relations: { campo_da_tabela_com_relação: true} <br>
+40 - Relação OneToOne: @OneToOne(() => ClasseRelacionada) @JoinColumn() atributoNaTabela: ClasseRelacionada | Relação ManyToMany:  @ManyToMany(() => ClasseRelacionada, (atributoClasseRelacionada) => atributoClasseRelacionada.atributo) @JoinTable() atributoNaTabela: ClasseRelacionada[] <br>
+
 *Imports Fundamentais*
 
 *Controller*<br>
