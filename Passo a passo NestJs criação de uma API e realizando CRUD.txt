@@ -59,6 +59,8 @@ Passo a passo - criação e edição de APIs utilizando NestJs
 36 - Definir qual será a relação @OneToMany e qual será a @ManyToOne
 37 - Em @OneToMany - uma unica entrada pode se relacionar a muitas outras, @OneToMany(() => ClasseRelacionada, (objetoDaClasseRelacionada) => objetoDaClasseRelacionada.campoRelacionado) objetoDaClasseRelacionadaPlural: ClasseRelacionada[]
 38 - Em @ManyToOne(() => ClasseProjetoRelacionada, (objetoDaClasseRelacionada) => objetoDaClasseRelacionada.objetoDaClassePrinciapalPlural, {onDelete: "CASCADE"}) objetoDaClasseRelacionada: ClasseRelacionada
+39 - Utilizar relations em todos os services de classes relacionadas, relations: { campo_da_tabela_com_relação: true}
+40 - Relação OneToOne: @OneToOne(() => ClasseRelacionada) @JoinColumn() atributoNaTabela: ClasseRelacionada | Relação ManyToMany:  @ManyToMany(() => ClasseRelacionada, (atributoClasseRelacionada) => atributoClasseRelacionada.atributo) @JoinTable() atributoNaTabela: ClasseRelacionada[]
 
 *Imports Fundamentais*
 
