@@ -57,20 +57,20 @@ Passo a passo - criação e edição de APIs utilizando NestJs
 
 *Imports Fundamentais*
 
-Controller
+*Controller*<br>
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common";<br>
 import { DeleteResult} from "typeorm";<br>
 
-Service
+*Service*<br>
 import { HttpCode, HttpException, HttpStatus, Injectable } from "@nestjs/common";<br>
 import { InjectRepository } from "@nestjs/typeorm";<br>
 import { DeleteResult, ILike, Repository } from "typeorm";<br>
 
-Entity
+*Entity*<br>
 import { IsNotEmpty, Max, MaxLength } from "class-validator";<br>
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";<br>
 
-Module
+*Module* <br>
 import { Module } from "@nestjs/common";<br>
 import { TypeOrmModule } from "@nestjs/typeorm";<br>
 </p>
