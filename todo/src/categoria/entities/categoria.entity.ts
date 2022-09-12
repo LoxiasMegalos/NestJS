@@ -15,4 +15,5 @@ export class Categoria {
 
     @OneToMany(() => Tarefa, (tarefa) => tarefa.categoria)
     tarefas: Tarefa[]
+
 }
