@@ -13,7 +13,7 @@ export class Paciente {
     @Column({nullable: true, length: 50})
     convenio: string
 
-    @OneToOne(() => Cadastro)
+    @OneToOne(() => Cadastro, {onDelete: "CASCADE"})
     @JoinColumn()
     cadastro: Cadastro
 }

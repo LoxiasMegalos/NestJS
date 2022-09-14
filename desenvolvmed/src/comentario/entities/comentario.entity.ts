@@ -15,6 +15,10 @@ export class Comentario {
     @Column({nullable: true, length: 300})
     conteudo: string
 
+    @IsNotEmpty()
+    @Column({nullable: false})
+    data_comentario: Date
+
     @ManyToOne(() => Postagem, (postagem) => postagem.comentarios, {
         onDelete: "CASCADE"
     })

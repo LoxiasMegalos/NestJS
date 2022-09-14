@@ -25,6 +25,10 @@ export class Postagem{
     @Column({nullable: false, length: 500})
     anexo: string
 
+    @IsNotEmpty()
+    @Column({nullable: false})
+    data_postagem: Date
+
     @ManyToOne(() => Tema, (tema) => tema.postagens, {
         onDelete: "CASCADE"
     }) tema: Tema
@@ -32,6 +36,7 @@ export class Postagem{
     @ManyToOne(() => Medico, (medico) => medico.postagens, {
         onDelete: "CASCADE"
     }) medico: Medico
+    
 
     @OneToMany(() => Comentario, (comentarioReferencia) => comentarioReferencia.postagem)
     comentarios : Comentario[]

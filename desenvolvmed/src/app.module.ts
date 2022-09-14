@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Cadastro } from './cadastro/entities/cadastro.entity';
 import { CadastroModule } from './cadastro/modules/cadastro.module';
+import { CadastroTemp } from './cadastrotemp/entities/cadastroTemp.entity';
 import { Comentario } from './comentario/entities/comentario.entity';
 import { ComentarioModule } from './comentario/modules/comentario.module';
 import { Medico } from './medico/entities/medico.entity';
@@ -24,7 +25,7 @@ import { TemaModule } from './tema/modules/tema.module';
       username: 'root',
       password: 'gen123',
       database: 'db_desenvolvmed',
-      entities: [Postagem, Tema, Cadastro, Medico, Paciente, Comentario],
+      entities: [Postagem, Tema, Cadastro, Medico, Paciente, Comentario, CadastroTemp],
       synchronize: true
     }),
     PostagemModule, 

@@ -10,14 +10,14 @@ export class Medico {
     id: number
 
     @IsNotEmpty()
-    @MaxLength(8)
-    @Column({nullable: false, length: 8})
+    @MaxLength(255)
+    @Column({nullable: false, length: 255})
     crm: string
 
     @OneToMany(() => Postagem, (postagem) => postagem.medico)
     postagens: Postagem[]
 
-    @OneToOne(() => Cadastro)
+    @OneToOne(() => Cadastro,{onDelete:"CASCADE"})
     @JoinColumn()
     cadastro: Cadastro
 }
