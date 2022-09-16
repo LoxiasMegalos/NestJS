@@ -5,6 +5,7 @@ import { Cadastro } from "../entities/cadastro.entity";
 import { Paciente } from "../../paciente/entities/paciente.entity";
 import { Medico } from "../../medico/entities/medico.entity";
 import { CadastroTemporarioDTO } from "../model/cadastrotemporariodto";
+import { Comentario } from "src/comentario/entities/comentario.entity";
 
 @Controller('/cadastro')
 export class CadastroController {
@@ -35,6 +36,12 @@ export class CadastroController {
     @HttpCode(HttpStatus.OK)
     findAll(): Promise<Cadastro[]> {
         return this.service.findAll()
+    }
+
+    @Get('/comentarios/:id')
+    @HttpCode(HttpStatus.OK)
+    findComentariosByCadastroId(@Param('id', ParseIntPipe) id: number): Promise<Comentario[]> {
+        return this.service.findComentariosByCadastroId(id)
     }
 
     @Put('/medico')

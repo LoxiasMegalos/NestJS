@@ -5,6 +5,7 @@ import { Medico } from "../../medico/entities/medico.entity";
 import { Paciente } from "../../paciente/entities/paciente.entity";
 import { Cadastro } from "../entities/cadastro.entity";
 import { DeleteResult, ILike, Repository } from "typeorm";
+import { Comentario } from "src/comentario/entities/comentario.entity";
 
 @Injectable()
 export class CadastroService {
@@ -217,5 +218,22 @@ export class CadastroService {
                 comentarios: true
             }
         })
+    }
+
+    async findComentariosByCadastroId(id: number): Promise<Comentario[]> {
+
+        let cadastro = await this.cadastroRepository.findOne({
+            where: {
+                id
+            }, relations: {
+                comentarios: true,
+            }
+        })
+
+        if (!cadastro)
+            throw new HttpException('Postagem não encontrada!', HttpStatus.NOT_FOUND)
+
+        return cadastro.comentarios
+        
     }
 }

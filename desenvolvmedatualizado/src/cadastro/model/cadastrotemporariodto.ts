@@ -24,7 +24,7 @@ export class CadastroTemporarioDTO {
     @MaxLength(255)
     email: string
 
-    @Length(13)
+    @MaxLength(13)
     crm: string
 
     @MaxLength(50)

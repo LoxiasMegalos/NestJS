@@ -58,6 +58,7 @@ export class PostagemService {
             throw new HttpException('Postagem não encontrada!', HttpStatus.NOT_FOUND)
 
         return postagem.comentarios
+        
     }
 
     async findByTitle(titulo: string): Promise<Postagem[]> {

@@ -1,0 +1,78 @@
+npm install supertest --save-dev : Instalar supertest
+"prestart:prod": "npm run build", - inicialização do programa
+"postinstall": "npm run prestart:prod", - dependencias do projeto
+"heroku-postbuild": "NODE_ENV=dev npm install --omit --no-shrinkwrap && npm run build" - configura comandos na nuvem
+npm install --save pg - Instalar o postgres
+
+API's - Bem documentada e de fácil uso - Manual de instruções para que qualquer desenvolvedor possa utilizar de maneira fácil e autônoma.
+Swagger - Documentar API's REST - UI pronta e interativa para esclarecer cada uso de uma requisição HTTP
+Implementar o Swagger em nosso projeto integrador - NestJs Swagger 
+
+Instalar dependencias no Projeto NestJs para integrar com o swagger
+npm install --save @nestjs/swagger swagger-ui-express
+
+configurações no main antes do process.env.TZ = '-03:00'
+
+const config = new DocumentBuilder()
+	.setTitle('Nome Do projeto')
+	.setDescription('Projeto nomeProjeto')
+	.setContact('Nome do responsavel', 'link website', 'email resp')
+	.setVersion('1.0')
+	.build()
+
+const document = SwaggerModule.createDocument(app, config)
+
+SwaggerModule.setup('/swagger', app, document)
+
+Inicializar dentro do nosso projeto, criando a página inicial do projeto
+
+Decorators - @ApiProperty() - Mapeamento dos Schemas
+	     @ApiTags() - Apontar os controllers das diferentes pastas 
+	     @ApiExcludeEndpoint() - Configura o Endpoint
+
+@ApiProperty() - Atributos de entidades
+
+@ApiTags() - Separar os Endpoints nos controllers
+
+@ApiTags('Nome da Entity')
+
+
+App.Controller
+
+@ApiExcludeEndpoint()
+  @Get()
+  async redirect(@Res() resposta: any){
+    return resposta.redirect('/swagger')
+ }
+
+controllers: [AppController],
+
+
+Deploy - API Completa e enviar para a nuvem - Deploy - implantar o projeto - lançar um link para que ele possa ser utilizado de qualquer lugar
+Aplicações reais passam a ser públicas rodando em um servidor e podem ser utilizadas por outros usuários.
+
+3 serviços principais de nuvem: 
+1. PaaS - Render, Azure - cloud - Plataforma como um serviço
+2. Iaas - Infraestrutura como um serviço - Pagamento mediante a quantidade de utilização - AWS e Digital Ocean
+3. Saas - Software como um serviço - Google Apps / Office 365 
+
+*Planos Gratuitos e Pagos*
+
+Deploy gratuíto em Render - 
+Banco de dados: Postgres 
+1. Alterar na main a porta em que a aplicação está rodando, invés de 3000 -  await app.listen(process.env.PORT ||3000);
+2. Novo arquivo na arvore do projeto: procfile (fora de src ou qualquer outra pasta) Indica que será rodado em produção
+3. Em procfile digitar: web: npm run start:prod
+4. Modificar o package.json em scripts após o último, adicionar 3 comandos - prestart, postintall, heroku
+5. Instalar o postgres e configurar o novo banco de dados nos imports do app principal, comentando o banco anteriormente configurado
+6. TypeOrmModule.forRoot({type: 'postgres', url: process.env.DATABASE_URL, logging: false, dropSchema: false, ssl: {rejectUnauthorized: false}, synchronize: true, autoLoadEntities: true}),
+7. Cada modificação posterior, comente o banco da nuvem e descomente o banco anteriormente utilizado localmente
+8. Configurar Github - novo repositório e incluir o projeto
+9. Render - New - PostgresSQL e nomear o banco
+10. Copiar a external database url: postgres://db_todolist_hvjg_user:ehc8HyKEpNRC5AIsULef3yOQdmdn8pue@dpg-cci7ugqrrk0c5opobcqg-a.oregon-postgres.render.com:5432/db_todolist_hvjg
+11. New WebService, conecte com o github, informe o nome do banco, ambiente: Node
+12. Advanced, Variavel de Ambiente: DATABASE_URL e value: external database url
+13. Rodar e aguardar
+14. Identificar o link gerado e a partir dele realizar as modificações
+reject unauthorized - nao será necessário que pessoas tenham o certificado ssl
+
